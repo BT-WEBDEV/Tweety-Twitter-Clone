@@ -4,4 +4,62 @@
 
 {% block content %}
 Welcome to Tweety
+
+<div id = "tweets"> 
+    Replace Me
+</div>
+
+<script> 
+const tweetsElement = document.getElementById("tweets") // getting an html element
+
+// EXAMPLE OF SETTING NEW HTML IN IN ELEMENT
+// tweetsElement.innerHTML = 'Loading...' // setting new html in that element
+// var el1 = "<h1> Hi There 1</h1>"
+// var el2 = "<h1> Hi There 2</h1>"
+// var el3 = "<h1> Hi There 3</h1>"
+// tweetsElement.innerHTML = el1 + el2 + el3
+
+const xhr = new XMLHttpRequest()
+const method = 'GET' // AS OPPOSED TO 'POST' METHOD
+const url = "/tweets"
+const responseType = "json"
+
+
+function handleDidLike(tweet_id, currentCount) {
+    console.log(tweet_id, currentCount)
+}
+
+
+function LikeBtn(tweet) {
+    return "<button class='btn btn-primary btn-sm' onclick=handleDidLike(" + 
+    tweet.id + "," + tweet.likes + ")>" + tweet.likes + " Likes</button>"
+}
+
+function formatTweetElement (tweet) {
+    var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id
+    + "'<p>" + tweet.content + 
+        "</p><div class = 'btn=group'>" + LikeBtn(tweet) +
+        "</div></div>"
+    return formattedTweet
+}
+
+xhr.responseType = responseType
+xhr.open(method, url)
+xhr.onload = function(){
+    const serverResponse = xhr.response
+    const listedItems = serverResponse.response
+    var finalTweetStr = ""
+    var i; 
+    for (i=0; i<listedItems.length; i++) {
+        var tweetObj = listedItems[i]
+        var currentItem = formatTweetElement(tweetObj)
+        finalTweetStr += currentItem
+    }
+    tweetsElement.innerHTML = finalTweetStr
+    //console.log(listedItems)
+}
+xhr.send()
+
+</script> 
+
 {% endblock content %}
