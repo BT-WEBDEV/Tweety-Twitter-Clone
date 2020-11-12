@@ -1,4 +1,14 @@
-1. Users
+1. Tweets
+    -> User Permissions
+        -> Creating
+            -> Text
+            -> Image -> Media Storage Server
+        -> Delete
+        -> Retweeting
+        -> Liking
+
+
+2. Users
     -> Register
     -> Login
     -> Logout
@@ -10,13 +20,7 @@
         -> User's feed only? 
         -> User and who they follow? 
 
-2. Tweets
-    -> Creating
-        -> Text
-        -> Image -> Media Storage Server
-    -> Delete
-    -> Retweeting
-    -> Liking
+
     
 3. Following / Followers
 
