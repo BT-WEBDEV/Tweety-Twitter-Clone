@@ -27,7 +27,7 @@ SECRET_KEY = 'il!he5k=*w6@=^kt0@gtiyr1qbmxynlwderekm=vhh(r$ll*%k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'mydomain.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'mydomain.com', 'localhost']
 LOGIN_URL = "/login"
 MAX_TWEET_LENGTH = 240
 TWEET_ACTION_OPTIONS = ["like", "unlike", "retweet"]
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'tweets',
 ]
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -124,6 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#These two settings will allow any app from any website to access the api. 
+CORS_ALLOW_ALL_ORIGINS = True #any website has access to my api
+CORS_ALLOWED_ORIGIN_REGEXES = r"^/api/.*$",
 
 DEFAULT_AUTHENTICATION_CLASSES = [
     'rest_framework.renderers.JSONRenderer',
