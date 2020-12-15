@@ -25,10 +25,12 @@ function lookup(method, endpoint, callback, data) {
   const csrftoken = getCookie('csrftoken');
   xhr.open(method, url)
   xhr.setRequestHeader("Content-Type", "application/json")
-  if (csrftoken) {
+  if (csrftoken && method === "POST") {
+    console.log(csrftoken)
     xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
     xhr.setRequestHeader("X-CSRFToken", csrftoken)
+    xhr.withCredentials = true
   }
   xhr.onload = function(){
     callback(xhr.response, xhr.status)

@@ -137,6 +137,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static-root")
 CORS_ALLOW_ALL_ORIGINS = True #any website has access to my api
 CORS_ALLOWED_ORIGIN_REGEXES = r"^/api/.*$",
 
+if DEBUG: 
+    CORS_ALLOW_CREDENTIALS = True
+    CORS_ALLOW_HEADERS = [
+        'content-type',
+        'x-requested-with',
+        'http_x_requested_with',
+        'x-csrftoken'
+    ]
+
 DEFAULT_AUTHENTICATION_CLASSES = [
     'rest_framework.renderers.JSONRenderer',
 ]
