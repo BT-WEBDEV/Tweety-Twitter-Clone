@@ -15,7 +15,7 @@ function getCookie(name) {
 }
 
 function lookup(method, endpoint, callback, data) {
-  let jsonData; 
+  let jsonData;  
   if (data) {
     jsonData = JSON.stringify(data)
   }
@@ -25,6 +25,7 @@ function lookup(method, endpoint, callback, data) {
   const csrftoken = getCookie('csrftoken');
   xhr.open(method, url)
   xhr.setRequestHeader("Content-Type", "application/json")
+  
   if (csrftoken && method === "POST") {
     console.log(csrftoken)
     xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
@@ -32,6 +33,7 @@ function lookup(method, endpoint, callback, data) {
     xhr.setRequestHeader("X-CSRFToken", csrftoken)
     xhr.withCredentials = true
   }
+  
   xhr.onload = function(){
     callback(xhr.response, xhr.status)
   }
@@ -39,7 +41,8 @@ function lookup(method, endpoint, callback, data) {
     console.log(e)
     callback({"message": "The request was an error"}, 400)
   }
-  xhr.send()
+  console.log(jsonData)
+  xhr.send(jsonData)
 }
 
 export function createTweet(newTweet, callback) {
