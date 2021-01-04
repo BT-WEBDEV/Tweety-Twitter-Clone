@@ -9,9 +9,10 @@ const appEl = document.getElementById('root')
 if (appEl) {
   ReactDOM.render(<App />, appEl)
 }
+const e = React.createElement
 const tweetsEl = document.getElementById("tweety")
 if (tweetsEl) {
-  ReactDOM.render(<TweetsComponent />, tweetsEl)
+  ReactDOM.render(e(TweetsComponent, tweetsEl.dataset), tweetsEl); 
 }
 
 
