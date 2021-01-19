@@ -159,7 +159,7 @@ if DEBUG:
         'rest_framework.renderers.BrowsableAPIRenderer'
         ]
     DEFAULT_AUTHENTICATION_CLASSES += [
-        'Tweety.rest_api.dev.DevAuthentication'
+       'Tweety.rest_api.dev.DevAuthentication'
     ]
 
 REST_FRAMEWORK = {
