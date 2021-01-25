@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication, BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -21,7 +21,7 @@ ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 # Create your views here.
 
 @api_view(['POST']) # http method the client == POST
-#@authentication_classes([SessionAuthentication])
+#@authentication_classes((SessionAuthentication, TokenAuthentication, BasicAuthentication))
 @permission_classes([IsAuthenticated])
 def tweet_create_view(request, *args, **kwargs): 
     serializer = TweetCreateSerializer(data = request.data)
