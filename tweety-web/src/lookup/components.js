@@ -35,7 +35,7 @@ export function backendLookup(method, endpoint, callback, data) {
   }
   
   xhr.onload = function(){
-    if (xhr.status === 403 && xhr.response) {
+    if (xhr.status === 403) {
       const detail = xhr.response.detail
       if (detail === "Authentication credentials were not provided.") {
         window.location.href = "/login?showLoginRequired=true"
@@ -44,7 +44,6 @@ export function backendLookup(method, endpoint, callback, data) {
     callback(xhr.response, xhr.status)
   }
   xhr.onerror = function (e) {
-    console.log("error", e)
     callback({"message": "The request was an error"}, 400)
   }
   console.log(jsonData)
