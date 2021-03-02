@@ -24,7 +24,7 @@ class Profile(models.Model):
     Why is related name called "following" instead of "followers"
     project_obj = Projects.objects.first()
     project_obj.follwers.all() -> All users following this profile
-    user.following.all() -> All users I follow
+    user.following.all() -> All user profiles I follow
     '''
 
 # Signal Trigger Function - Once an account is made it will create a profile user. 
