@@ -30,26 +30,28 @@ def tweet_create_view(request, *args, **kwargs):
         return Response(serializer.data, status=201)
     return Response({}, status=400)
 
-
+'''
+TWEET FEED VIEW - Gets a List of All Tweets from Followed Users
+Model Manager(feed) - Query Set Filters Are In tweets.models.
+'''
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def tweet_feed_view(request, *args, **kwargs): 
     user = request.user
-    profiles = user.following.all()
-    followed_users_id = []
-    if profiles.exists(): 
-            followed_users_id = [x.user.id for x in profiles]
-    followed_users_id.append(user.id)
-    qs = Tweet.objects.filter(user__id__in=followed_users_id).order_by("-timestamp")
+    qs = Tweet.objects.feed(user)
     serializer = TweetSerializer(qs, many=True)
     return Response(serializer.data)
 
+'''
+TWEET LIST VIEW - Gets a List of All Tweets
+Model Manager(by_username) - Query Set Filters Are In tweets.models. 
+'''
 @api_view(['GET'])
 def tweet_list_view(request, *args, **kwargs): 
     qs = Tweet.objects.all()
     username = request.GET.get('username') # ?username=brandon
     if username != None: 
-        qs = qs.filter(user__username__iexact=username)
+        qs = qs.by_username(username)
     serializer = TweetSerializer(qs, many=True)
     return Response(serializer.data)
 
