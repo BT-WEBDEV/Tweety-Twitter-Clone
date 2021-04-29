@@ -17,7 +17,8 @@ if (tweetsEl) {
 
 const tweetFeedEl = document.getElementById("tweety-feed")
 if (tweetsEl) {
-  ReactDOM.render(e(FeedComponent, tweetFeedEl.dataset), tweetFeedEl); 
+  ReactDOM.render(
+    e(FeedComponent, tweetFeedEl.dataset), tweetFeedEl); 
 }
 
 const tweetDetailElements = document.querySelectorAll(".tweety-detail")

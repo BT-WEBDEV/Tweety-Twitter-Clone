@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+{% if request.user.is_authenticated %}
+    <div id= "tweety-feed"></div>
+{% else %}
+    <div id="tweety"></div>
+{% endif %}
+
+
+{% endblock content %}
