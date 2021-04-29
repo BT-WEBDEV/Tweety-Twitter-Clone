@@ -9,14 +9,18 @@ const appEl = document.getElementById('root')
 if (appEl) {
   ReactDOM.render(<App />, appEl)
 }
+
+//DEFAULT HOME TWEET LIST ELEMENT (NO LOGIN)
 const e = React.createElement
 const tweetsEl = document.getElementById("tweety")
 if (tweetsEl) {
-  ReactDOM.render(e(TweetsComponent, tweetsEl.dataset), tweetsEl); 
+  ReactDOM.render(
+    e(TweetsComponent, tweetsEl.dataset), tweetsEl); 
 }
 
+//TWEET FEED ELEMENT (AFTER LOGIN)
 const tweetFeedEl = document.getElementById("tweety-feed")
-if (tweetsEl) {
+if (tweetFeedEl) {
   ReactDOM.render(
     e(FeedComponent, tweetFeedEl.dataset), tweetFeedEl); 
 }

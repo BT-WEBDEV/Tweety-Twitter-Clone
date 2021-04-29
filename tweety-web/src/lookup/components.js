@@ -25,6 +25,7 @@ export function backendLookup(method, endpoint, callback, data) {
   const csrftoken = getCookie('csrftoken');
   xhr.open(method, url)
   xhr.setRequestHeader("Content-Type", "application/json")
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*")
   
   if (csrftoken && method === "POST") {
     console.log(csrftoken)
